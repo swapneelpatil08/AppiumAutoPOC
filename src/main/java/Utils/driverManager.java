@@ -4,14 +4,12 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class driverManager {
-    public static enum appToBeOpened {Chrome, Calculator, Youtube}
+    public enum appToBeOpened {Chrome, Calculator, Youtube}
 
     public static AppiumDriver<MobileElement> appiumDriver;
 
