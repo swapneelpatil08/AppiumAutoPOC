@@ -3,7 +3,8 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="/Users/in-swapneel.patil/Project/AppiumAutoPOC">
         <classes>
-            <class name="tests.HomeTest"></class>
+            <class name="tests.CalculatorTests"></class>
+            <class name="tests.YoutubeTests"></class>
         </classes>
     </test>
 </suite>
