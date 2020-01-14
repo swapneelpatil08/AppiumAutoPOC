@@ -8,6 +8,8 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class YouTubePage extends driverManager {
 
     private AppiumDriver<MobileElement> driver;
@@ -26,12 +28,11 @@ public class YouTubePage extends driverManager {
     @AndroidFindBy(id = "search_edit_text")
     private MobileElement search_edit_text;
 
-    @AndroidFindBy(id = "search_layout")
-    private MobileElement result;
+    @AndroidFindBy(id = "title")
+    private List<MobileElement> playlistItemsTitle;
 
-    @AndroidFindBy(id = "search_layout")
-    private MobileElement playlistItems;
-
+    @AndroidFindBy(className = "android.widget.TextView")
+    private List<MobileElement> suggestionList;
 
     public void search(String searchText) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -41,21 +42,14 @@ public class YouTubePage extends driverManager {
     }
 
     public void selectFirstResult(String searchText) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(webDriver -> result.isDisplayed());
-        System.out.println("result.isDisplayed(): " + result.isDisplayed());
-        System.out.println("playlistItems.isDisplayed(): " + playlistItems.isDisplayed());
+//        WebDriverWait wait = new WebDriverWait(driver, 10);
+//        wait.until(webDriver -> suggestionList.get(0).isDisplayed());
 
-//        System.out.println("SearchText" + playlistItems.findElementByXPath("//android.widget.TextView[contains(., '" + searchText + "')]").isDisplayed());
-
-//        List<MobileElement> list = driver.findElements(By.className("android.widget.TextView"));
-//        System.out.println("-----"+list);
-//        result.findElementByXPath("//android.widget.ImageView[contains(@content-desc(), 'Edit suggestion " + searchText + "')]").click();
-//        result.findElementByXPath().click();
+        suggestionList.get(0).click();
     }
 
-    public String getTextOfFirstResult(String searchText){
-        String value = result.findElementByXPath("//android.widget.TextView]").getText();
+    public String getTextOfFirstResult(){
+        String value = playlistItemsTitle.get(0).getText();
         System.out.println("Value: " + value);
         return value;
     }

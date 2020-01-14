@@ -12,11 +12,11 @@ public class YoutubeTests extends YouTubePage {
 
     @Test
     public void search(){
-        String searchText = "appium tutorial for beginners";
+        String searchText = "Appium Step by Step for Beginners";
         search(searchText);
         selectFirstResult(searchText);
-        String value = getTextOfFirstResult(searchText);
-        Assert.assertEquals(value, "Appium Step by Step for Beginners");
+        String textOfFirstResult = getTextOfFirstResult();
+        Assert.assertEquals(textOfFirstResult, searchText);
     }
 
     @AfterTest
