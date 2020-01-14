@@ -27,9 +27,9 @@ public class driverManager {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("appium-version", "1.9.1");
         capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("deviceName", "Andriod SDK built for x86");
+        capabilities.setCapability("deviceName", "emulator-5554");
         capabilities.setCapability("platformVersion", "9");
-        capabilities.setCapability("automationName", "UiAutomator2");
+//        capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("appWaitActivity", "*");
 
         if (appName == appToBeOpened.Calculator) capabilities = getCapabilitiesForCalculator(capabilities);
@@ -52,14 +52,14 @@ public class driverManager {
 
     private static DesiredCapabilities getCapabilitiesForYouTube(DesiredCapabilities capabilities){
         capabilities.setCapability("appPackage", "com.google.android.youtube");
-        capabilities.setCapability("appActivity", ".app.honeycomb.Shell$HomeActivity");
+//        capabilities.setCapability("appActivity", ".app.honeycomb.Shell$HomeActivity");
+        capabilities.setCapability("appActivity", "com.google.android.apps.youtube.app.WatchWhileActivity");
         return capabilities;
     }
 
     public static void closeDriver() {
         try {
             appiumDriver.closeApp();
-            appiumDriver.close();
         } catch (Exception e)
         {
             System.out.println(e.getMessage());
