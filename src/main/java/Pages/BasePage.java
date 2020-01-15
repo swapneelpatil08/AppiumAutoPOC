@@ -1,7 +1,8 @@
 package Pages;
 
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,11 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePage {
 
     private static final int TIMEOUT = 5; //seconds
-    protected WebDriver driver;
+    protected AndroidDriver<MobileElement> driver;
     private WebDriverWait wait;
 
 
-    public BasePage(WebDriver driver) {
+    public BasePage(AndroidDriver<MobileElement> driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

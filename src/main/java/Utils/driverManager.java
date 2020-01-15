@@ -2,6 +2,7 @@ package Utils;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -11,15 +12,15 @@ import java.util.concurrent.TimeUnit;
 public class driverManager {
     public enum appToBeOpened {Chrome, Calculator, Youtube}
 
-    public static AppiumDriver<MobileElement> appiumDriver;
+    public static AndroidDriver<MobileElement> androidDriver;
 
 
-    public static AppiumDriver<MobileElement> openDriver(appToBeOpened app) throws Exception {
+    public static AndroidDriver<MobileElement> openDriver(appToBeOpened app) throws Exception {
 
-        appiumDriver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), getCapabilities(app));
-        appiumDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        androidDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), getCapabilities(app));
+        androidDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        return appiumDriver;
+        return androidDriver;
     }
 
 
@@ -29,7 +30,6 @@ public class driverManager {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "emulator-5554");
         capabilities.setCapability("platformVersion", "9");
-//        capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("appWaitActivity", "*");
 
         if (appName == appToBeOpened.Calculator) capabilities = getCapabilitiesForCalculator(capabilities);
@@ -52,14 +52,13 @@ public class driverManager {
 
     private static DesiredCapabilities getCapabilitiesForYouTube(DesiredCapabilities capabilities){
         capabilities.setCapability("appPackage", "com.google.android.youtube");
-//        capabilities.setCapability("appActivity", ".app.honeycomb.Shell$HomeActivity");
         capabilities.setCapability("appActivity", "com.google.android.apps.youtube.app.WatchWhileActivity");
         return capabilities;
     }
 
     public static void closeDriver() {
         try {
-            appiumDriver.closeApp();
+            androidDriver.closeApp();
         } catch (Exception e)
         {
             System.out.println(e.getMessage());

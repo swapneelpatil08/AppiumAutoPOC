@@ -1,8 +1,8 @@
 package Pages;
 
 import Utils.driverManager;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
@@ -12,15 +12,12 @@ import java.util.List;
 
 public class YouTubePage extends driverManager {
 
-    private AppiumDriver<MobileElement> driver;
+    private AndroidDriver<MobileElement> driver;
 
     public YouTubePage() throws Exception {
         this.driver = driverManager.openDriver(appToBeOpened.Youtube);
         PageFactory.initElements(new AppiumFieldDecorator(this.driver), this);
     }
-
-//    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Search\"]\n")
-//    private MobileElement searchButton;
 
     @AndroidFindBy(accessibility = "Search")
     private MobileElement searchButton;
@@ -42,9 +39,6 @@ public class YouTubePage extends driverManager {
     }
 
     public void selectFirstResult(String searchText) {
-//        WebDriverWait wait = new WebDriverWait(driver, 10);
-//        wait.until(webDriver -> suggestionList.get(0).isDisplayed());
-
         suggestionList.get(0).click();
     }
 

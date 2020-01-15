@@ -1,19 +1,18 @@
 package Pages;
 
 import Utils.driverManager;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.touch.TapOptions;
-import io.appium.java_client.touch.offset.ElementOption;
 import org.openqa.selenium.support.PageFactory;
-import io.appium.java_client.TouchAction;
+
+import java.util.List;
 
 
 public class HomePage extends driverManager {
 
-    private AppiumDriver<MobileElement> driver;
+    private AndroidDriver<MobileElement> driver;
 
     public HomePage() throws Exception {
         this.driver = driverManager.openDriver(appToBeOpened.Youtube);
@@ -44,6 +43,8 @@ public class HomePage extends driverManager {
     @AndroidFindBy(id = "youtube_logo")
     private MobileElement logo;
 
+    @AndroidFindBy(id = "com.google.android.youtube:id/results\n")
+    private List<MobileElement> thumbnails;
 
 
     public MobileElement clickHomeIcons(String icon) {
@@ -73,19 +74,19 @@ public class HomePage extends driverManager {
         return null;
     }
 
-    public boolean isSelected(MobileElement element){
+    public boolean isSelected(MobileElement element) {
         return element.isSelected();
     }
 
-    public boolean isPageLogoDisplayed(){
+    public boolean isPageLogoDisplayed() {
         return logo.isDisplayed();
     }
 
-    public void clickOnSearchIcon(){
+    public void clickOnSearchIcon() {
         searchButton.click();
     }
 
-    public void clickOnUserAccount(){
+    public void clickOnUserAccount() {
         account.click();
     }
 }

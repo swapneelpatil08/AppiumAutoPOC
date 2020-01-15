@@ -1,8 +1,8 @@
 package Pages;
 
 import Utils.driverManager;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CalculatorPage extends driverManager {
 
-    private AppiumDriver<MobileElement> driver;
+    private AndroidDriver<MobileElement> driver;
 
     public CalculatorPage() throws Exception {
         this.driver = driverManager.openDriver(driverManager.appToBeOpened.Calculator);

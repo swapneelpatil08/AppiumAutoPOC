@@ -35,6 +35,4 @@ public class HomePageTests extends HomePage {
         boolean result = isSelected(ele);
         Assert.assertTrue(result,"true");
     }
-
-
 }
