@@ -1,5 +1,6 @@
 package Pages;
 
+import Utils.driverManager;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BasePage {
+public class BasePage extends driverManager {
 
     private static final int TIMEOUT = 5; //seconds
     protected AndroidDriver<MobileElement> driver;

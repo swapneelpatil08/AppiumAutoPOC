@@ -2,11 +2,15 @@ package Pages;
 
 import Utils.driverManager;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.Duration;
 import java.util.List;
 
 
@@ -46,6 +50,14 @@ public class HomePage extends driverManager {
     @AndroidFindBy(id = "com.google.android.youtube:id/results\n")
     private List<MobileElement> thumbnails;
 
+    @AndroidFindBy(id = "search_edit_text")
+    private MobileElement search_edit_text;
+
+    @AndroidFindBy(className = "android.widget.TextView")
+    private List<MobileElement> suggestionList;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Appium Tutorial']")
+    private MobileElement AppiumTutorial;
 
     public MobileElement clickHomeIcons(String icon) {
         switch (icon) {
@@ -88,5 +100,28 @@ public class HomePage extends driverManager {
 
     public void clickOnUserAccount() {
         account.click();
+    }
+
+    public void scrollToView() {
+
+        searchButton.click();
+        search_edit_text.sendKeys("Appium Tutorial");
+        suggestionList.get(0).click();
+        TouchAction touchAction = new TouchAction(driver);
+        boolean found = false;
+        while(!found) {
+            try{
+                AppiumTutorial.isDisplayed();
+                found =true;
+            }
+            catch (Exception e){
+                touchAction.press(PointOption.point(0, 1600))
+                        .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                        .moveTo(PointOption.point(0, 210))
+                        .release()
+                        .perform();
+            }
+        }
+
     }
 }

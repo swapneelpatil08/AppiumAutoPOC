@@ -3,8 +3,8 @@ package tests;
 import Pages.HomePage;
 import io.appium.java_client.MobileElement;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 
 public class HomePageTests extends HomePage {
@@ -34,5 +34,10 @@ public class HomePageTests extends HomePage {
         MobileElement ele = clickHomeIcons(data);
         boolean result = isSelected(ele);
         Assert.assertTrue(result,"true");
+    }
+
+    @Test
+    public void scroll(){
+        scrollToView();
     }
 }
