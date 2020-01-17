@@ -14,30 +14,31 @@ public class HomePageTests extends HomePage {
 
     @DataProvider(name = "data-provider")
     public Object[][] dataProviderMethod() {
-        return new Object[][] {
-                { "Home" },
-                { "Trending" },
-                { "Subscriptions" },
-                { "Activity" },
-                { "Library" }};
+        return new Object[][]{
+                {"Home"},
+                {"Trending"},
+                {"Subscriptions"},
+                {"Activity"},
+                {"Library"}};
     }
 
     @Test
-    public void verifyLogo(){
-        boolean pageLogoDisplayed = isPageLogoDisplayed() ;
+    public void verifyLogo() {
+        boolean pageLogoDisplayed = isPageLogoDisplayed();
         System.out.println(pageLogoDisplayed);
-        Assert.assertTrue(pageLogoDisplayed,"true");
+        Assert.assertTrue(pageLogoDisplayed, "true");
     }
 
     @Test(dataProvider = "data-provider")
-    public void switchTabs(String data){
+    public void switchTabs(String data) {
         MobileElement ele = clickHomeIcons(data);
         boolean result = isSelected(ele);
-        Assert.assertTrue(result,"true");
+        Assert.assertTrue(result, "true");
     }
 
     @Test
-    public void scroll(){
+    public void scroll() {
         scrollToView();
     }
+
 }

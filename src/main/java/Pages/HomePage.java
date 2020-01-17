@@ -109,12 +109,11 @@ public class HomePage extends driverManager {
         suggestionList.get(0).click();
         TouchAction touchAction = new TouchAction(driver);
         boolean found = false;
-        while(!found) {
-            try{
+        while (!found) {
+            try {
                 AppiumTutorial.isDisplayed();
-                found =true;
-            }
-            catch (Exception e){
+                found = true;
+            } catch (Exception e) {
                 touchAction.press(PointOption.point(0, 1600))
                         .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
                         .moveTo(PointOption.point(0, 210))
@@ -124,4 +123,5 @@ public class HomePage extends driverManager {
         }
 
     }
+
 }
