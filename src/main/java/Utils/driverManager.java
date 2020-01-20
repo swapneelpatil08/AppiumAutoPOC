@@ -15,7 +15,6 @@ public class driverManager {
 
     public static AndroidDriver<MobileElement> androidDriver;
 
-
     public static AndroidDriver<MobileElement> openDriver(appToBeOpened app) throws Exception {
 
         androidDriver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), getCapabilities(app));

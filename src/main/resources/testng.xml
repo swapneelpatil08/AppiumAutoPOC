@@ -3,9 +3,10 @@
 <suite name="All Test Suite">
     <test verbose="2" name="/Users/">
         <classes>
-<!--            <class name="tests.CalculatorTests"></class>-->
-<!--            <class name="tests.YoutubeTests"></class>-->
-<!--            <class name="tests.HomePageTests"/>-->
+            <class name="tests.TouchActionTests"/>
+            <class name="tests.CalculatorTests"></class>
+            <class name="tests.YoutubeTests"></class>
+            <class name="tests.HomePageTests"/>
             <class name="tests.InstallApp"></class>
         </classes>
     </test>

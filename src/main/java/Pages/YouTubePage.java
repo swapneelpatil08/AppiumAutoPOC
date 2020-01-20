@@ -3,8 +3,11 @@ package Pages;
 import Utils.driverManager;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,6 +20,11 @@ public class YouTubePage extends driverManager {
     public YouTubePage() throws Exception {
         this.driver = driverManager.openDriver(appToBeOpened.Youtube);
         PageFactory.initElements(new AppiumFieldDecorator(this.driver), this);
+    }
+
+    public YouTubePage(AndroidDriver<MobileElement> driver) throws Exception {
+        this.driver = driver;
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     @AndroidFindBy(accessibility = "Search")
@@ -46,5 +54,14 @@ public class YouTubePage extends driverManager {
         String value = playlistItemsTitle.get(0).getText();
         System.out.println("Value: " + value);
         return value;
+    }
+
+    public void playFirstVideo(){
+        playlistItemsTitle.get(0).click();
+
+    }
+
+    public void clickSearch() {
+        driver.pressKey(new KeyEvent(AndroidKey.ENTER));
     }
 }
