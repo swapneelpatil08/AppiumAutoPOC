@@ -1,19 +1,23 @@
 package tests;
 
-import Pages.YouTubePage;
+import Pages.HomePage;
+import Pages.SearchFieldPage;
+import Utils.driverManager;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
-public class YoutubeTests extends YouTubePage {
+public class SearchVideoTest extends SearchFieldPage {
 
-    public YoutubeTests() throws Exception {
+    public SearchVideoTest() throws Exception {
     }
+    HomePage homePage = new HomePage(androidDriver);
 
     @Test
     public void search(){
         String searchText = "Appium Step by Step for Beginners";
-        search(searchText);
+        homePage.clickSearch();
+        setSearchText(searchText);
         selectFirstResult(searchText);
         String textOfFirstResult = getTextOfFirstResult();
         Assert.assertEquals(textOfFirstResult, searchText);

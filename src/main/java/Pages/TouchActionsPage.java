@@ -11,8 +11,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class TouchActionsPage extends driverManager {
     private AndroidDriver<MobileElement> driver;
+    BasePage bp = new BasePage();
 
     public TouchActionsPage() throws Exception {
         this.driver = driverManager.openDriver(driverManager.appToBeOpened.Youtube);
@@ -37,23 +40,57 @@ public class TouchActionsPage extends driverManager {
     @AndroidFindBy(id = "player_learn_more_button")
     private MobileElement visitAdvertiser;
 
-//    public AndroidDriver<MobileElement> getDriver() {
-//        return driver;
-//    }
+    @AndroidFindBy(id ="skip_ad_button_text")
+    private  List<MobileElement> skipAdButton;
+
+    @AndroidFindBy(className = "android.view.View")
+    private MobileElement videoFrame;
+
+    @AndroidFindBy(id = "player_overlays")
+    private MobileElement playerOverlays;
+
+
+    @AndroidFindBy(id = "player_learn_more_button")
+    private List<MobileElement> adOnScreen;
+
+    @AndroidFindBy(accessibility = "Minimize")
+    private MobileElement minimize;
+
+    @AndroidFindBy(id = "search_query")
+    private MobileElement searchField;
+
+    @AndroidFindBy(id = "search_clear")
+    private MobileElement searchClear;
 
     public void moveSeekBar(){
         int start = seekBar.getLocation().getX();
-        int end = seekBar.getSize().getWidth();
+        int end = seekBar.getSize().getWidth() - 300;
         int y = seekBar.getLocation().getY();
-
         TouchAction action = new TouchAction(this.driver);
-        action.press(PointOption.point(start, y)).moveTo(PointOption.point(end, y)).release().perform();
+        action.press(PointOption.point(start, 670)).moveTo(PointOption.point(end, 670)).release().perform();
     }
 
-    public void waitForAdvertiserToDisappear(){
-        if (visitAdvertiser.isDisplayed()) {
-            BasePage base = new BasePage(driver);
-            base.waitForElementToDisappear(By.id("player_learn_more_button"));
-        }
+    public void skipAd(){
+            while (adOnScreen.size()>0){
+                if(skipAdButton.size()>0){
+                    skipAdButton.get(0).click();
+                }
+        }}
+
+    public void setPlayPause(){
+       seekBar.click();
+       if(playPauseButton.isDisplayed()){
+           playPauseButton.click();
+       }
+
+    }
+
+    public void minimizeVideo(){
+        BasePage.waitForElementToAppear(minimize);
+        minimize.click();
+    }
+
+    public void searchField(){
+        searchField.click();
     }
 }

@@ -11,30 +11,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage extends driverManager {
 
-    private static final int TIMEOUT = 5; //seconds
-    protected AndroidDriver<MobileElement> driver;
+    private static final int TIMEOUT = 50; //seconds
     private WebDriverWait wait;
 
-
-    public BasePage(AndroidDriver<MobileElement> driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
-
-    protected void waitForElementToAppear(WebElement element){
-        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
+    protected static void waitForElementToAppear(WebElement element){
+        WebDriverWait wait = new WebDriverWait(androidDriver, TIMEOUT);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    protected void waitForElementToDisappear(By locator) {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    protected void waitForElementToDisappear(WebElement element) {
     }
 
     protected void waitForTextToDisappear(By locator, String text) {
-        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, text)));
     }
 
     protected void waitForElementToBeClickable(WebElement element){
+        WebDriverWait wait = new WebDriverWait(androidDriver, TIMEOUT);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }

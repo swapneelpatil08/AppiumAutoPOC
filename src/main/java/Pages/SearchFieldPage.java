@@ -13,22 +13,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class YouTubePage extends driverManager {
+public class SearchFieldPage extends driverManager {
 
     private AndroidDriver<MobileElement> driver;
 
-    public YouTubePage() throws Exception {
+    public SearchFieldPage() throws Exception {
         this.driver = driverManager.openDriver(appToBeOpened.Youtube);
         PageFactory.initElements(new AppiumFieldDecorator(this.driver), this);
     }
 
-    public YouTubePage(AndroidDriver<MobileElement> driver) throws Exception {
+    public SearchFieldPage(AndroidDriver<MobileElement> driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    @AndroidFindBy(accessibility = "Search")
-    private MobileElement searchButton;
 
     @AndroidFindBy(id = "search_edit_text")
     private MobileElement search_edit_text;
@@ -39,10 +37,11 @@ public class YouTubePage extends driverManager {
     @AndroidFindBy(className = "android.widget.TextView")
     private List<MobileElement> suggestionList;
 
-    public void search(String searchText) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(webDriver -> searchButton.isDisplayed());
-        searchButton.click();
+
+
+    public void setSearchText(String searchText)
+    {
+        search_edit_text.clear();
         search_edit_text.sendKeys(searchText);
     }
 
@@ -61,7 +60,7 @@ public class YouTubePage extends driverManager {
 
     }
 
-    public void clickSearch() {
+    public void pressEnter() {
         driver.pressKey(new KeyEvent(AndroidKey.ENTER));
     }
 }

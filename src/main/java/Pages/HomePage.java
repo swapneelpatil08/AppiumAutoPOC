@@ -23,6 +23,11 @@ public class HomePage extends driverManager {
         PageFactory.initElements(new AppiumFieldDecorator(this.driver), this);
     }
 
+    public HomePage(AndroidDriver<MobileElement> driver) {
+        this.driver = driver;
+        PageFactory.initElements(new AppiumFieldDecorator(this.driver), this);
+    }
+
     @AndroidFindBy(accessibility = "Home")
     private MobileElement homeIcon;
 
@@ -58,6 +63,15 @@ public class HomePage extends driverManager {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Appium Tutorial']")
     private MobileElement AppiumTutorial;
+
+    @AndroidFindBy(id = "floaty_close_button")
+    private MobileElement closePlayingVideoButton;
+
+    @AndroidFindBy(accessibility = "Search")
+    private List<MobileElement> searchOnHomePage;
+
+    @AndroidFindBy(id = "search_query")
+    private List<MobileElement> searchQuery;
 
     public MobileElement clickHomeIcons(String icon) {
         switch (icon) {
@@ -107,7 +121,8 @@ public class HomePage extends driverManager {
         searchButton.click();
         search_edit_text.sendKeys("Appium Tutorial");
         suggestionList.get(0).click();
-        TouchAction touchAction = new TouchAction(driver);
+        TouchAction touchAction;
+        touchAction = new TouchAction(driver);
         boolean found = false;
         while (!found) {
             try {
@@ -121,7 +136,21 @@ public class HomePage extends driverManager {
                         .perform();
             }
         }
+    }
 
+    public void clickSearch() {
+        if(searchOnHomePage.size()>0) {
+            searchOnHomePage.get(0).click();
+        }
+        else if(searchQuery.size()>0){
+            searchQuery.get(0).click();
+        }
+    }
+
+    public void closePlayingVideo() {
+        if (closePlayingVideoButton.isDisplayed()) {
+            closePlayingVideoButton.click();
+        }
     }
 
 }
